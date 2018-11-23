@@ -1,0 +1,47 @@
+body {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background-image: URL("./../images/imgA.png");
+    background-repeat: no-repeat;
+    background-position: center top; 
+    z-index: 0;
+    font-family: sauna-new, sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 100%;
+}
+div#login_div.row {
+    margin-top: 250px;
+    justify-content: center;
+    color: whitesmoke;
+}
+div#login_col   {
+    z-index: 2;
+}
+div.login_rows {
+    justify-content: center;
+}
+button.login_or_signup    {
+    width: 250px;
+    height: 35px;
+    background-color: black;
+    color: whitesmoke;
+    border: none;
+    font-family: sauna-new, sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 100%;
+}
+@media screen and (orientation: landscape) and (min-width: 568px)    {
+    div#login_div.row {
+        margin-top: 100px;
+}}
+@media screen and (orientation: landscape) and (min-width: 640px)    {
+    div#login_div.row {
+        margin-top: 100px;
+}}
+@media screen and (min-width: 1024px)   {
+    div#login_div.row {
+        margin-top: 300px;
+}}
