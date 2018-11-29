@@ -2,50 +2,116 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content-slider="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content-slider="ie=edge">
     <title>Happy Camp[er]</title>
     <link rel="stylesheet" type="text/css" href="../public/css/landPage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+  </script>
+    <!-- <script src="../public/js/bootstrap-datepicker.js"></script>
+    <link href="../public/css/bootstrap-datepicker.css"> -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
 </head>
 <body>
 
   <ul>
+
+
+    <!-- Search Page for choosing a location -->
       <li>
-          <div class="content">
-          <h2>Happy Camp[er]</h2>
-          <section>Information on why our services matter and how we can best assist the user with their end goal of booking a trip</section>
+          <div class="content-slider" id="parkSearch">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Find a destination by</h2>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12" >
+
+                            <section class="searchBarWrapper">
+                            <div class="search-box">
+                            
+                                 <input type="text" placeholder="Search" class="searchInput">                                <input type="checkbox" id="parameterPark" class="searchParameters" name="park" value="park">
+                                    
+                                 <input type="checkbox" id="parameterRegion" class="searchParameters" name="region" value="region" checked>
+                            
+                                 <div class="searchButton">
+                                   <i class="fa fa-search" aria-hidden="true"></i>
+                                 </div>
+
+                                 
+ 
+                            
+                              </div>
+                              </section>
+                    </div>
+                </div>
+            </div>
+
+
           </div>
       </li>
+
+
+
+
+
+
       <li>
-            <div class="content">
+            <div class="content-slider">
                     <h2>Take a Short trip! <i class="fas fa-campground"></i></h2>
                     <section>Information on how we can assist with short day to weekend trips trips</section>
                     </div>
       </li>
       <li>
-            <div class="content">
+            <div class="content-slider">
                     <h2>Thinking of something longer... <i class="fas fa-campground"></i></h2>
-                    <section>Information on how we can assist with week long trips</section>
+                    <section>Information on how we can assist with week long trips
+
+                    </section>
                     </div>
+
+
+
+
       </li>
       <li>
-            <div class="content">
+            <div class="content-slider">
                     <h2>Or even possibly an adventure! <i class="fas fa-campground"></i></h2>
                     <section>Information on how we can assist with any trip longer than a week</section>
                     </div>
       </li>
       <li>
-            <div class="content">
+            <div class="content-slider">
                     <h2>Invite others to your trip! <i class="fas fa-user-friends"></i></h2>
                     <section>Information on how our site intuitivly allows users to invite others and share a list of different items that are recommended for the trip so everyone can make sure they have the correct supplies</section>
                     </div>
       </li>
-
-      <h2> You've ventured a bit far...</h2>
   </ul>
 
 
-    
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<script>
+      
+        $(".searchButton").click(function(){
+    $(".searchInput").toggleClass("active").focus;
+    $(".searchParameters").toggleClass("active").focus;
+    $(this).toggleClass("animate");
+    $(".searchInput").val("");
+  });
+          
+      </script>
