@@ -8,53 +8,58 @@ body{
 
 /* Code for the content within the slider */
 
-/* Styling for checkboxes */
-/* .search-box {
-    width: 450px;
-    height: 100px;
-    position: relative;
-} */
-
 .searchParameters[type="checkbox"] {
     position: relative;
-    width: 120px;
-    height:40px;
+    /* ratio:3:1 */
+    width: 70%;
+    max-width:75px;
+    height:15px;
     -webkit-appearance:none;
     box-shadow: 0 0 0 4px #353535,
     0 0 0 5px #3e3e3e,
     inset 0 0 10px rgba(0,0,0,1), 
     0 5px 20px rgba(0,0,0,.5),
     inset 0 0 15px rgba(0,0,0,.2);
-    background: linear-gradient(0deg,#333,#000);
+    background: linear-gradient(0deg,#6dd1ff,#20b7ff);
     outline:none;
     border-radius: 20px;
     transition: 0.5s;
-    bottom:35px;
-    left:10px;
-    margin:10px;
+    left: -5px;
+    top: -33px;
+    margin:3px;
 }
 
-.searchParameters{
-    visibility: hidden;
-    transition: 0.5s ease;
-}
-
-#parameterPark::before{
-    content:'Parks';
-}
 
 #parameterRegion::before{
-    content:'Region';
+    content:'By State';
+    font-size: 8px;
+    color:#63cdff;
+}
+
+#searchBy {
+    display:none;
+    transition: all 0s;
+}
+
+#searchBy.active {
+    display:block;
+    transition:all 0s;
+}
+
+#parameterRegion:checked:before{
+    content:'By Park';
+    font-size: 8px;
+    color:rgb(71, 207, 100);
 }
 
 .searchParameters:before {
     content:'';
-    color:#63cdff;
     text-align:center;
-    line-height: 30px;
+    line-height: 15px;
     position:absolute;
-    width:80px;
-    height:40px;
+    /* ratio: 2:1 */
+    width:40px;
+    height:15px;
     background: linear-gradient(0deg,#000,#6b6b6b);
     border-radius: 70px 70px 70px 70px;
     -moz-border-radius: 70px 70px 70px 70px;
@@ -69,53 +74,41 @@ body{
 }
 
 .searchParameters:checked[type="checkbox"]:before{
-    left:40px;
+    left:36px;
+    
 }
 
 .searchParameters[type="checkbox"]:after {
     content:'';
     position:absolute;
     top: calc(50% - 2px);
-    left:65px;
-    width:4px;
-    height:4px;
-    background: linear-gradient(0deg,#6b6b6b,#000);
+    left:36px;
+    width:2px;
+    height:2px;
+    background: linear-gradient(0deg,#6dd1ff,#20b7ff);
     border-radius: 50%;
     transition: .5s
-
 }
+
 .searchParameters:checked[type="checkbox"]:after{
-    left:105px;
-    background: #63cdff;
-    box-shadow:0 0 5px #13b3ff, 0 0 15px #13b3ff;
+    left:72px;
+    background: linear-gradient(0deg,rgb(71, 207, 100),rgb(253, 250, 250));    
+    box-shadow:0 0 5px #13b3ff, 
+    0 0 15px #13b3ff;
 }
 
 .searchParameters:checked[type="checkbox"]{
-    box-shadow: 0 0 2px #6dd1ff,0 0 0 4px #353535,0 0 0 5px #3e3e3e,inset 0 0 10px rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,.5),inset 0 0 15px rgba(0,0,0,.2);
-    background: linear-gradient(0deg,#6dd1ff,#20b7ff);
+box-shadow: 0 0 2px #6dd1ff,
+0 0 0 4px #353535,
+0 0 0 5px #3e3e3e,
+inset 0 0 10px rgba(0,0,0,1), 
+0 5px 20px rgba(0,0,0,.5),
+inset 0 0 15px rgba(0,0,0,.2);
+background: linear-gradient(0deg,rgb(71, 207, 100),rgb(253, 250, 250));
+
 }
 
-/* End of styling for checkboxes */
-
-
-  
-  .searchInput {
-    position: absolute;
-    top: 30px;
-    right: 5px;
-    box-sizing: border-box;
-    width: 0px;
-    height: 43px;
-    padding: 0 20px;
-    outline: none;
-    font-size: 18px;
-    border-radius: 50px;
-    color: #29313a;
-    border: 3px solid #62d474;
-    transition: all 0.8s ease;
-  }
-  
-  ::-webkit-.searchParameters-placeholder {
+::-webkit-.searchParameters-placeholder {
     /* Chrome/Opera/Safari */
     color: #62d474;
   }
@@ -131,42 +124,148 @@ body{
     /* Firefox 18- */
     color: #62d474;
   }
+
+/* End of styling for checkboxes */
+
+
   
-  .searchButton {
+  .searchInput {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    background: #62d474;
-    border-radius: 50%;
-    right: 5px;
-    top: 20px;
-    cursor: pointer;
-    text-align: center;
-    line-height: 60px;
-    font-size: 20px;
-    color: #fff;
+    top: -10px;
+    right: 47%;
+    box-sizing: border-box;
+    width: 0px;
+    height: 43px;
+    padding: 0 20px;
+    outline: none;
+    font-size: 18px;
+    border-radius: 50px;
+    color: #29313a;
+    border: 3px solid #62d474;
     transition: all 0.8s ease;
   }
   
   .searchInput.active {
     width: 70%;
-    right: 25px;
+    right: 75px;
   }
   
-  .searchButton.animate {
+#searchButton {
+    position: absolute;
+    outline:none;
+    width: 70px;
+    height: 70px;
+    background: #62d474;
+    border-radius: 50%;
+    right: 47%;
+    top: -20px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 70px;
+    font-size: 25px;
+    color: #fff;
+    transition: all 0.8s ease;
+  }
+
+  #searchButton.animate {
     transform: rotate(-360deg);
     right: 25px;
   }
+
+button:focus{
+    outline:none;
+}
   
-  .searchParameters.active{
-      visibility: visible;
-      transition: .5s ease;
-  }
 
   .searchBarWrapper {
     margin:20px;
     top: 0;
     left: 0;
+  }
+
+  .calendarRow {
+      margin-top:20px;
+  }
+
+  .searchRow {
+      margin-top:50px;
+  }
+
+  /* Calendar */
+
+ 
+
+  .calendarInput {
+    position: absolute;
+    top: -15px;
+    right: 49%;
+    box-sizing: border-box;
+    width: 0px;
+    height: 40px;
+    padding: 0 0px;
+    outline: none;
+    font-size: 18px;
+    border-radius: 50px;
+    color: #29313a;
+    border: 3px solid #62d474;
+    transition: all 0.8s ease;
+  }
+
+  .calendarInput2 {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    box-sizing: border-box;
+    width: 0px;
+    height: 40px;
+    padding: 0 0px;
+    outline: none;
+    font-size: 18px;
+    border-radius: 50px;
+    color: #29313a;
+    border: 3px solid #62d474;
+    transition: all 0.8s ease;
+  }
+
+  .calendarButton {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: #f34d4d;
+    border-radius: 50%;
+    right: 47%;
+    top: -30px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 70px;
+    font-size: 25px;
+    color: #fff;
+    transition: all 0.8s ease;
+  }
+
+  .calendarInput2.active {
+    width: 47%;
+    left: 25px;
+  }
+  
+  .calendarInput.active {
+    width: 47%;
+    right: 75px;
+  }
+  
+  .calendarButton.animate {
+    transform: rotate(-360deg);
+  }
+  
+
+  .calendarBarWrapper {
+    margin:20px;
+    top: 0;
+    left: 0;
+  }
+
+  .row{
+      margin-top:40px;
   }
 
 /* End of code for content within the slider */
@@ -176,51 +275,36 @@ body{
 
 
 /* This section is for the content slider background */
-ul{
+#mainPage{
 position: absolute;
 top: 0;
 left: 0;
 width: 100%;
 height: 100vh;
-background: url(../images/landPage6.jpg);
+/* background: url(../images/landPage6.jpg); */
 background-size: cover;
 background-position:left;
 margin: 0;
 padding: 0;
-/* visibility: hidden; */
+/* display:none; */
 }
 
-ul li 
+#mainPage section
 {
     list-style: none;
     position: relative;
-    width: 20%;
+    /* width: 33%; */
     height:100%;
     border-right: 1px solid #000;
     float: left;
     box-sizing: border-box;
     transition: 0.5s;
     text-align: center;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
-
-ul:hover li
-{
-    width:10%;
-}
-
-ul li:hover 
-{
-    width:60%;
-}
-
-
-
-
-ul li .content-slider {
+#mainPage section.content-slider {
     position: absolute;
-    bottom: -100%;
     left:0;
     width:100%;
     box-sizing: boder-box;
@@ -228,8 +312,8 @@ ul li .content-slider {
     opacity: 0;
 }
 
-ul li:hover .content-slider {
-    bottom: 0;
+#mainPage section:hover.content-slider {
+    /* bottom: 80%; */
     transition: 0.5s;
     transition-delay:  0.2s;
     opacity: 1;
@@ -237,34 +321,23 @@ ul li:hover .content-slider {
 
 /* Code below is for the images of each section */
 
-ul li:nth-child(1){
+#mainPage section:nth-child(1){
     background:url(../images/landPage1.jpg);
     background-size: cover;
     background-position:left
 }
 
-ul li:nth-child(2){
+#mainPage section:nth-child(2){
     background:url(../images/landPage2.jpg);
     background-size: cover;
     background-position:left
 }
 
-ul li:nth-child(3){
+#mainPage section:nth-child(3){
     background:url(../images/landPage3.jpg);
     background-size: cover;
     background-position:left
 }
 
-ul li:nth-child(4){
-    background:url(../images/landPage4.jpg);
-    background-size: cover;
-    background-position:left
-}
-
-ul li:nth-child(5){
-    background:url(../images/landPage5.jpg);
-    background-size: cover;
-    background-position:left
-}
 
 /* End of content slider code */
