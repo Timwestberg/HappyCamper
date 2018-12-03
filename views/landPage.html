@@ -29,9 +29,21 @@
         <!-- Search Page for choosing a location -->
         <section id="searchPage">
 
-            <div class="content-slider" id="parkSearch">
+            <div class="container">
+                <div class="row">
 
-                <div class="container">
+                    
+            <div id="loginModal" class="modal">
+                    <div class="login-Content">
+                        <span class="loginCloseButton">
+                            &times;
+                        </span>
+                    </div>
+                </div>
+
+
+            <div class="content-slider col-12" id="parkSearch">
+
 
                     <div class="row">
 
@@ -112,9 +124,40 @@
 
                     </div>
 
+                    <div class="row loginRow">
+
+                            <div class="col-12">
+    
+                                <div class="loginModalWrapper row">
+    
+                                    <div class="login-box col-12">
+
+                                        <!-- Modal for login -->
+
+    
+                                        <button id="loginButton">
+    
+                                            <!-- Icon for Login Modal -->
+                                            <i class="fas fa-user-alt"></i>
+                                        </button>
+    
+    
+                                    </div>
+    
+                                </div>
+    
+    
+                            </div>
+                            
+                        </div>
+
                 </div>
 
             </div>
+                
+    </div>
+</div>
+
 
         </section>
 
@@ -146,14 +189,144 @@
 
         <section id="parkProfile">
 
-            <div class="content-slider">
-
-                <h2>Thinking of something longer... <i class="fas fa-campground"></i></h2>
-
-                <p>Information on how we can assist with week long trips</p>
+            <div class="row">
+                <div class="col-12">
 
 
+      
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+            
+                <div class="carousel-inner">
+                    <!-- First Image of the carousel and the info inside -->
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" id="FirstImg" src=""
+                            style="width:300px;height:350px;" alt="First slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                    <h5> Park Name </h5>
+                                    <p> The location of the park </p>
+                                  </div>
+                            
+                    </div>
+            
+                    <!--====================================================================================================-->
+            
+                    <!--The Second Image of the carousel and the info inside-->
+                    <div class="carousel-item">
+                        
+                        <img class="d-block w-100" id="SecondImg" src=""
+                            style="width:300px;height:350px;" alt="Second slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5> Park Name </h5>
+                                <p> The location of the park </p>
+                                  </div>
+                            
+                    </div>
+                    <!--====================================================================================================-->
+            
+                    <!--Third Image of the carousel and the info inside-->
+                    <div class="carousel-item">
+                        <img class="d-block w-100" id="ThirdImg" src=""
+                            style="width:300px;height:350px;" alt="Third slide">
+                             <div class="carousel-caption d-none d-md-block">
+                                    <h5> Park Name </h5>
+                                    <p> The location of the park </p>
+                                  </div>
+                            
+                    </div>
+                </div>
+                <!--====================================================================================================-->
+            
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
+
+
+
+        </div>
+
+                          
+    </div>
+            <!--The end of the carousel -->
+
+            <div class="row">
+                <div class="col-12">
+
+        
+            <!--I added this navbar just so it would look nice but you are free to remove it-->
+            <nav id="middle" class="navbar navbar-dark bg-dark">
+        
+            </nav>
+            <!--This is where the main body starts the Park Name-->
+            <h2 id="park"></h2>
+            <div>
+        <!--This the description of the park where we get from the API-->
+            <p id=parkInfo></p>
+            </div>
+            <h2> Reviews </h2>
+                    <div class="form-group">
+                            <div class="rating">
+                              <input type="radio" id="star10" name="rating" value="10" /><label for="star10" title="Rocks!">1 star</label>
+                              <input type="radio" id="star9" name="rating" value="9" /><label for="star9" title="Rocks!">2 stars</label>
+                              <input type="radio" id="star8" name="rating" value="8" /><label for="star8" title="Pretty good">3 stars</label>
+                              <input type="radio" id="star7" name="rating" value="7" /><label for="star7" title="Pretty good">4 stars</label>
+                              <input type="radio" id="star6" name="rating" value="6" /><label for="star6" title="Meh">5 stars</label>
+                            </div>
+                 </div>
+            
+            <form>
+                    
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Email address or Name</label>
+                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                    <div class="form-group">
+                            <div class="rating">
+                       
+                                <input type="radio" id="star1" name="rating" value="1" /><label for="star1" >1 star</label>
+                              <input type="radio" id="star2" name="rating" value="2" /><label for="star2" >2 stars</label>
+                              <input type="radio" id="star3" name="rating" value="3" /><label for="star3" >3 stars</label>
+                              <input type="radio" id="star4" name="rating" value="4" /><label for="star4" >4 stars</label>
+                              <input type="radio" id="star5" name="rating" value="5" /><label for="star5" >5 stars</label>
+                            </div>
+                 </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect2">Example multiple select</label>
+                  <select multiple class="form-control" id="exampleFormControlSelect2">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Example textarea</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button id="Submit" type="button" class="btn btn-outline-success my-2 my-lg-0">Submit Your Review :)</button>
+              </form>
+        
+    
+
+
+                    
+            </div>
+        </div>
+         
+
 
 
         </section>
