@@ -221,4 +221,29 @@ module.exports = function(app) {
       res.json(dbExample);
     });
   });
+  // This is the POST method
+  app.post("/api/review", function(req, res){
+
+    // Validate parameters
+    if(!req.body || !req.body.review) {
+        // Throw an error
+    }
+
+    // Add the review ton the database
+    // the fields are
+    // parkCode, rating, reviewText 
+    db.ParkReviews.create({
+      reviewer:req.body.name,
+      rating: req.body.rating,
+      reviewText: req.body.text,
+      parkCode:req.body.parkCode
+    })
+      .then(function(dbPost) {
+        res.json(dbPost);
+      });
+
+  });
 };
+
+
+
