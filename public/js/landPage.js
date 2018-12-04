@@ -120,8 +120,8 @@ function check_page_viewed(pages_viewed)  {
 
         pages_viewed.push($("section#listResults"));
 
-    } else if (pages_viewed.includes($("section#parkProfile")) === false) {
-        pages_viewed.push($("section#parkProfile"));
+    } else if (pages_viewed.includes($("section#parkProfile"),$(".carouselVanish")) === false) {
+        pages_viewed.push($("section#parkProfile"),$(".carouselVanish"));
     };
 
     return pages_now_viewed(pages_viewed);
@@ -202,6 +202,8 @@ function phase3(pages_viewed) {
     $("section#listResults").css("width", "15vw");
 
     $("section#parkProfile").css("width", "70vw");
+
+    $(".carouselVanish").css("visibility","visible").css("background-color","#2892e2");
 
     if (pages_viewed.length < 3) {
 
