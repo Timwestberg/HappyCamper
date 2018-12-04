@@ -8,7 +8,6 @@ body{
 
 
 
-
 /* Code for the content within the slider */
 
 .searchParameters[type="checkbox"] {
@@ -27,7 +26,7 @@ body{
     outline:none;
     border-radius: 20px;
     transition: 0.5s;
-    left: -5px;
+    left: -35px;
     top: -33px;
     margin:3px;
 }
@@ -54,6 +53,8 @@ body{
     font-size: 8px;
     color:rgb(71, 207, 100);
 }
+
+
 
 .searchParameters:before {
     content:'';
@@ -353,13 +354,15 @@ button:focus{
 
   }
 
+
+
   /* =============================================== */
 /* End of code for content within the slider */
 
 /* Row seperation height */
-.row{
+/* .row{
     margin-top:40px;
-}
+} */
 
 
 /* This section is for the content slider background */
@@ -411,6 +414,10 @@ padding: 0;
     opacity: 1;
 }
 
+.optionsRow{
+    padding:40px;
+}
+
 /* Code below is for the images of each section */
 
 #mainPage section:nth-child(1){
@@ -427,9 +434,19 @@ padding: 0;
 
 #mainPage section:nth-child(3){
     background:url(../images/landPage3.jpg);
+    /* background-color:#2892e2; */
     background-size: cover;
     background-position:left
 }
+
+#mainPage section:nth-child(3).active{
+    background-color:#2892e2;
+}
+
+.carouselVanish {
+    visibility: hidden;
+}
+
 
 
 /* End of content slider code */
@@ -441,7 +458,8 @@ padding: 0;
   }
   .carousel-inner{
     width:100%;
-    max-height: 350px ;
+    max-height: 100vh ;
+    background-cover:
   }
   h2{
       text-decoration: underline;
