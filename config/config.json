@@ -1,14 +1,14 @@
 {
   "development": {
-    "username": "root",
-    "password": "root",
+    "username": "Timwestberg",
+    "password": "Dulce1352",
     "database": "happycamperdb",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": "root",
+    "username": "Timwestberg",
+    "password": "Dulce1352",
     "database": "happycamperdb",
     "host": "localhost",
     "dialect": "mysql"

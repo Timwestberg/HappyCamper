@@ -1,0 +1,105 @@
+<!-- Park Profile Page -->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        <!-- First Image of the carousel and the info inside -->
+        <div class="carousel-item active">
+            <img class="d-block w-100" id="FirstImg" src="" style="width:300px;height:350px;" alt="First slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5> Park Name </h5>
+                <p> The location of the park </p>
+            </div>
+
+        </div>
+
+        <!--====================================================================================================-->
+
+        <!--The Second Image of the carousel and the info inside-->
+        <div class="carousel-item">
+
+            <img class="d-block w-100" id="SecondImg" src="" style="width:300px;height:350px;" alt="Second slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5> Park Name </h5>
+                <p> The location of the park </p>
+            </div>
+
+        </div>
+        <!--====================================================================================================-->
+
+        <!--Third Image of the carousel and the info inside-->
+        <div class="carousel-item">
+            <img class="d-block w-100" id="ThirdImg" src="" style="width:300px;height:350px;" alt="Third slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5> Park Name </h5>
+                <p> The location of the park </p>
+            </div>
+
+        </div>
+
+    </div>
+    <!--====================================================================================================-->
+
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+
+
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+
+
+</div>
+
+
+
+
+<!--The end of the carousel -->
+
+<div class="row">
+    <div class="col-12">
+
+
+        <!--I added this navbar just so it would look nice but you are free to remove it-->
+        <nav id="middle" class="navbar navbar-dark bg-dark">
+
+        </nav>
+        <!--This is where the main body starts the Park Name-->
+        <h2 id="park"></h2>
+        <div>
+            <!--This the description of the park where we get from the API-->
+            <p id=parkInfo></p>
+        </div>
+        <h2> Reviews </h2>
+        <div class="star-rating">
+            <s><s><s><s><s>
+                            </s></s></s></s></s>
+        </div>
+
+        <div class="show-result">No stars selected yet.</div>
+
+        <form>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Name or UserName</label>
+                <input type="email" class="form-control" id="reviewer-name" placeholder="Name Here">
+            </div>
+
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Your Experience</label>
+                <textarea class="form-control" id="review-text" rows="3"></textarea>
+            </div>
+            <button id="submit-review" type="button" class="btn btn-outline-success my-2 my-lg-0">Submit Your Review :)</button>
+        </form>
+
+    </div>
+</div>
