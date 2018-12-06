@@ -42,7 +42,8 @@ module.exports = function(app) {
       let parkInfoArray = [];
 
       popularParks.forEach(async (currentPark) => {
-        console.log("*** ITERATION ****");
+        //console.log("*** ITERATION ****");
+        
         /* Construct the query URL retrieve information on the park */
         var queryUrl = "http://api.nps.gov/api/v1/parks/?parkCode=" + currentPark.parkCode;
 
@@ -52,7 +53,7 @@ module.exports = function(app) {
         /* Also ask for images of the park */
         queryUrl += "&fields=images";
 
-        console.log("Query URL is " + queryUrl);
+        //console.log("Query URL is " + queryUrl);
 
         const response = await fetch(queryUrl);
         const json = await response.json();
@@ -63,8 +64,8 @@ module.exports = function(app) {
         parkInfo.parkDescription = json.data[0].description;
         parkInfo.parkImages = json.data[0].images;
         parkInfo.parkStates = json.data[0].states;
-        console.log("\n\n Here's the park data");
-        console.log(parkInfo);
+        //console.log("\n\n Here's the park data");
+        //console.log(parkInfo);
         parkInfoArray.push(parkInfo);
       });
 
