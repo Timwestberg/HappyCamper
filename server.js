@@ -17,7 +17,8 @@ app.use(express.json());
 // app.set("view engine", "handlebars");
 
 const htmlRoutes = require("./routes/htmlRoutes");
-app.use(htmlRoutes);
+const apiRoutes = require("./routes/apiRoutes");
+app.use(htmlRoutes, apiRoutes);
 
 app.listen(PORT, function() {
   console.log("Server listening on: http://localhost:" + PORT);

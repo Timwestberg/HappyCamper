@@ -110,29 +110,29 @@ function callback_display(results) {
                 append_park(parkResults);
 }})}}};
 
+function requestNPS(new_search) {
+    $.get("/api/nps/"+new_search.search_type+"/"+new_search.search_code, (error, response, body) => {
+        if(error || response.statusCode != 200){
+            return console.log("Oops couldn't find the park(s)");
+        };
+        results = JSON.parse(body);
+    }).then((results) => {
+        console.log(results.total + " matches found!\n");
+        return callback_display(results);
+})}
+
 function park_lookup_by(new_search){
     var search_code = new_search.search_code;
     if (new_search.search_type === "stateCode")   { 
         display = new Display_Div().a();
-        if (!search_code || typeof(search_code) !== "string" || search_code.length !== 2) { 
-            return console.log("Please enter a valid state");
-        }}
-    else { 
-        display = new Display_Div().b();
-        if (!search_code || typeof(search_code) !== "string" || search_code.length !== 4) {
-        return console.log("Please enter a valid park");
-    }};
-    var parks_api_key = "dhGJ8AteLZ%UAwz7dvhNVa43QGqu0WjD29R0J2B";
-    var queryUrl = "http://api.nps.gov/api/v1/parks/?"+new_search.search_type+"="+search_code+"&fields=images&apiKey="+parks_api_key;
-	$.ajax(queryUrl, (error, response, body) => {
-		if(error || response.statusCode != 200){
-            return console.log("Oops couldn't find the park(s)");
-        };
-        results = JSON.parse(body);
-	}).then((results) => {
-        console.log(results.total + " matches found!\n");
-        return callback_display(results);
-})};
+        if (!search_code || typeof(search_code) !== "string" || search_code.length !== 2) {     return console.log("Please enter a valid state");    }
+    }   else { 
+            display = new Display_Div().b();
+            if (!search_code || typeof(search_code) !== "string" || search_code.length !== 4) { return console.log("Please enter a valid park");    }
+    
+    }
+    requestNPS(new_search);
+};
 
 function check_page_viewed(pages_viewed, third_toggle, new_search)  {
     if (pages_viewed.length === 1) {    pages_viewed.push(results_page);   }   
