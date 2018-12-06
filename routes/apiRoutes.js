@@ -19,7 +19,7 @@ module.exports = function(app) {
 
     /* Parameter validation */
     if(!parkToSearch || typeof(parkToSearch) !== "string" || parkToSearch.length !== 4){
-      res.status(500).send("Oops - bad park code passed in");
+      res.status(400).send("Oops - bad park code passed in");
     }
 
     /* Valid park code provided. Do a lookup using the NPS API */
@@ -108,7 +108,7 @@ module.exports = function(app) {
 
     /* Parameter validation */
     if(!stateToSearch || typeof(stateToSearch) !== "string" || stateToSearch.length !== 2){
-      res.status(500).send("Oops - bad state code passed in");
+      res.status(400).send("Oops - bad state code passed in");
     }
 
     /* Valid state code provided. Do a lookup using the NPS API */
@@ -183,7 +183,7 @@ module.exports = function(app) {
     // Validate parameters
     if(!req.body || !req.body.review) {
         // Throw an error
-        res.status(500).send("Got invalid review information")
+        res.status(400).send("Got invalid review information")
     }
 
     // Add the review ton the database
