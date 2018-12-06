@@ -26,20 +26,38 @@ background-size: cover;
 background-position:center;
 overflow:hidden;
 }
-div#results_page  {
+/* div#results_page  {
 width: 15%;
 overflow: auto;
 background:url(landPage2.jpg);
 background-size: cover;
 background-position:center;
-}
-div#park_page  {
+} */
+/* div#park_page  {
 width: 15%;
 background:url(landPage3.jpg);
 background-size: cover;
 background-position:center;
-overflow-y:scroll;
 overflow-x:none;
+} */
+
+div#results_page  {
+width: 15%;
+overflow: auto;
+background-color: #62d474;
+background-size: cover;
+background-position:center;
+}
+div#park_page  {
+width: 15%;
+background-color: #508632;
+background-size: cover;
+background-position:center;
+overflow-x:none;
+}
+div#park_page_results   {
+width: 98%;
+overflow: none;
 }
 
 div.park_row                        {border: black solid 1px; height: 100px;}
@@ -73,7 +91,6 @@ top: -35px;
 margin:3px;
 }
 
-
 #parameterRegion::before{
 content:'By State';
 font-size: 8px;
@@ -95,9 +112,6 @@ transition: all 0s;
 display:block;
 transition:all 0s;
 }
-
-
-
 
 .searchParameters:before {
 content:'';
@@ -122,7 +136,6 @@ box-shadow: -2px 16px 51px -6px rgba(0,0,0,0.75);
 
 .searchParameters:checked[type="checkbox"]:before{
 left:36px;
-
 }
 
 .searchParameters[type="checkbox"]:after {

@@ -3,6 +3,28 @@
 // });
 var rows = [];
 
+function append_park(results)  {
+    if (results.data !== undefined)    {
+        results = results.data[0];
+    }
+    var randomizedImgArr = [];
+    for (i=0; i < results.images.length; i++)   {
+        var randomized = Math.floor(Math.random() * results.images.length); 
+        if (randomizedImgArr.length === 0)    {
+            randomizedImgArr.push(randomized);
+        } else {    if (randomizedImgArr.includes(randomized) === true) continue; else  {
+            randomizedImgArr.push(randomized);
+        }};
+        randomizedImgArr[i] = results.images[randomizedImgArr[i]].url;
+        if (randomizedImgArr.length === 3) break; else continue;
+    };
+    $("img#FirstImg").attr({"href": randomizedImgArr[0], "src": randomizedImgArr[0]});
+    $("img#SecondImg").attr({"href": randomizedImgArr[1], "src": randomizedImgArr[1]});
+    $("img#ThirdImg").attr({"href": randomizedImgArr[2], "src": randomizedImgArr[2]});
+    $("h5").text(results.fullName);
+    $("p.carousel_park_location").text(results.states);
+}
+
 function append_park_row(nps, display)  {
     var park_row = new JQ("div", ["row", "park_row"], nps.parkCode+"_row");
     (display.section).append(park_row[0]);
@@ -41,6 +63,15 @@ var park_page = $("div#park_page");
 var search_results = $("div#search_results");
 var pages_viewed = [search_page];
 var third_toggle = false;
+var search_page_contents = $("div#search_page_contents");
+
+function hide_park_page_results()   {
+    park_page.css("overflow-y", "none");
+    park_page_results = $("div#park_page_results");
+    park_page_results.css("display", "none");
+    return park_page_results;
+};
+var park_page_results = hide_park_page_results();
 
 function User_Search(search_type)  {
     this.search_type = search_type;
@@ -49,24 +80,35 @@ function User_Search(search_type)  {
 
 function Display_Div()  {
     this.a = () =>  {this.section= $("div#search_results")[0]; this.number = 6; return this;},
-    this.b = () =>  {this.section= $("div#park_page")[0]; this.number = 1; return this;}
+    this.b = () =>  {this.section= $("div#park_page_results")[0]; this.number = 1; return this;}
     return this;
 };
 
 function callback_display(results) {
+    if (display.number === 1)   {   append_park(results);   }
+    else    {
     for (i=0; i < display.number; i++)   {
-        var randomized = Math.floor(Math.random() * results.total)
-        var nps = results.data[randomized];
+        var randomized = Math.floor(Math.random() * results.total);
+        nps = results.data[randomized];
         rows = append_park_row(nps, display);
-    }
-    console.log(rows);
+    };
     for (i=0; i < rows.length; i++) {
         $(rows[i]).click((event)    =>  {
             var objClasses = $(event.target)[0].classList;
             for (i=0; i< objClasses.length; i++)  {
                 if (objClasses[i].length === 4) {
-                console.log($(event.target)[0].classList[i]);
-}}})}};
+                var parkSelected = $(event.target)[0].classList[i];
+            }};
+            for (i=0; i < results.total; i++)  {
+                if (results.data[i].parkCode === parkSelected) {
+                    parkResults = results.data[i];
+                    break;
+            }};
+            if (parkResults !== undefined || null)  {
+                third_toggle = true;
+                phase3(pages_viewed, third_toggle, null);
+                append_park(parkResults);
+}})}}};
 
 function park_lookup_by(new_search){
     var search_code = new_search.search_code;
@@ -116,34 +158,37 @@ for (i=0; i < pages_viewed.length; i++)    {
 }})}};
 
 function phase1(pages_viewed, third_toggle, new_search)   {
+    search_page_contents.css("display", "block");
     search_page.css("width", "70%");
     results_page.css("width", "15%");
     park_page.css("width", "15%");
     search_results.css("display", "none");
+    park_page.css("overflow-y", "hidden");
+    park_page_results.css("display", "none");
     if (pages_viewed.length < 3)  {   check_page_viewed(pages_viewed, third_toggle, new_search);    };
 };
 
 function phase2(pages_viewed, third_toggle, new_search)   {
+    search_page_contents.css("display", "none");
     search_page.css("width", "15%");
     results_page.css("width", "70%");
     search_results.css("display", "block");
     park_page.css("width", "15%");
+    park_page.css("overflow-y", "hidden");
+    park_page_results.css("display","none");
     if (pages_viewed.length < 3)  {   check_page_viewed(pages_viewed, third_toggle, new_search);    };
 ;};
 
 function phase3(pages_viewed, third_toggle, new_search)   {
+    search_page_contents.css("display", "none");
     search_results.css("display", "none");
     search_page.css("width", "15%");
     results_page.css("width", "15%");
     park_page.css("width", "70%");
+    park_page.css("overflow-y", "scroll");
+    park_page_results.css("display", "block");
     if (pages_viewed.length < 3)  {   check_page_viewed(pages_viewed, third_toggle, new_search);    };
 };
-
-$("button#results_btn").click((event) => {
-    event.preventDefault();
-    third_toggle = true;
-    phase3(pages_viewed, third_toggle);
-});
 
 searchButton.click((event)   =>  {
     event.preventDefault();
@@ -175,6 +220,7 @@ searchButton.click((event)   =>  {
                             if (searchInput.val().length !== 4) {   return alert("Please input a valid park code") }
                             else    {
                                 var new_search = new User_Search("parkCode");
+                                third_toggle = true;
                                 phase3(pages_viewed, third_toggle, new_search);
                                 park_lookup_by(new_search);
                             };
@@ -183,6 +229,5 @@ searchButton.click((event)   =>  {
         return changeInputState; 
         default: break;
     }
-
     return changeInputState;
 });
