@@ -3,9 +3,9 @@
 // });
 
 $( document ).ready(function() {
-    searchBy.toggleClass("active").focus;
-    searchInput.toggleClass("active").focus;
-    searchButton.toggleClass("animate");
+    // searchBy.toggleClass("active").focus;
+    // searchInput.toggleClass("active").focus;
+    // searchButton.toggleClass("animate");
 });
 
 var rows = [];
@@ -205,9 +205,9 @@ searchButton.click((event)   =>  {
     switch (changeInputState)   {
         case ("open next"):
         // No longer need I open up the toggle on load and never close
-            // searchBy.toggleClass("active").focus;
-            // searchInput.toggleClass("active").focus;
-            // searchButton.toggleClass("animate");
+            searchBy.toggleClass("active").focus;
+            searchInput.toggleClass("active").focus;
+            searchButton.toggleClass("animate");
             changeInputState = "close next";
             return changeInputState;
         case ("close next"):
