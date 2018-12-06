@@ -19,13 +19,19 @@ module.exports = function(app) {
     let parkToSearch =req.params.parkCode;
     request("http://api.nps.gov/api/v1/parks/?parkCode="+req.params.parkCode+"&fields=images&apiKey="+parks_api_key,
     (error, response, body) =>    {
-        if(error || response.statusCode != 200){
-            return console.log("Oops couldn't find the park");
-        }
-        var results = JSON.parse(body);
-        res.send(results);
+      if(error || response.statusCode != 200){
+          return console.log("Oops couldn't find the park");
+      }
+      var results = JSON.parse(body);
 
-      /* Also, update the parkSearches database */
+      res.send(results);
+
+      /* construct the database entry using the results */
+      let parkInfo = {};
+      parkInfo.parkCode = results.data[0].parkCode;
+      parkInfo.states = results.data[0].states;
+
+      /* Update the parkSearches database */
       db.ParkSearches.findAll({
         where: {
           parkCode: parkToSearch
@@ -39,7 +45,7 @@ module.exports = function(app) {
           console.log("Park doesn't exist in searches, adding it");
           db.ParkSearches.create({
             parkCode: parkToSearch,
-            states: parkInfo.parkStates
+            states: parkInfo.states
           }).then(function(newlyAddedSearch){
             if(!newlyAddedSearch){
               console.log("Unexpected Error, update seems to have failed");
@@ -60,7 +66,7 @@ module.exports = function(app) {
           });
         }
       
-        res.send(results);
+        //res.send(results);
 
       });
     });
