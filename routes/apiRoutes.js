@@ -12,49 +12,18 @@ module.exports = function(app) {
   /**
    * GET method that handles park information lookup by park code
    */
-  app.get("/api/getParkByCode/:code", function(req, res) {
-    let parkToSearch = req.params.code;
 
-    console.log("Got a park lookup request, the park code is " + parkToSearch);
 
-    /* Parameter validation */
-    if(!parkToSearch || typeof(parkToSearch) !== "string" || parkToSearch.length !== 4){
-      res.status(400).send("Oops - bad park code passed in");
-    }
-
-    /* Valid park code provided. Do a lookup using the NPS API */
-    /* Construct the query URL retrieve information on the park */
-    var queryUrl = "http://api.nps.gov/api/v1/parks/?parkCode=" + parkToSearch;
-
-    /* Append API Key to the query URL */
-    queryUrl += ("&apiKey="+parks_api_key);
-
-    /* Also ask for images of the park */
-    queryUrl += "&fields=images";
-
-    console.log("Query URL is " + queryUrl);
-
-    request(queryUrl, function(error, response, body){
-
-      if(error || response.statusCode != 200){
-        res.status(500).send("NPS API lookup failed!");
-      }
-
-      var results = JSON.parse(body);
-
-      console.log(results.total + " matches found!\n");
-
-      // onsole.log(results);
-
-      /* The specified national park was found. Retrieve its co-ordinates to perform 
-        a weather lookup */
-      let coordinates = results.data[0].latLong.match(/[+-]?\d+(\.\d+)?/g).map(Number);
-      console.log(coordinates);
-      let latitude = coordinates[0];
-      let longitude = coordinates[1];
-
-      console.log("*** Park co-ordinates are ***");
-      console.log("Latitude : " + latitude + " and Longitude : " + longitude);
+  app.get("/api/nps/parkCode/:parkCode", function(req, res) {
+    console.log(req.originalUrl);
+    let parkToSearch =req.params.parkCode;
+    request("http://api.nps.gov/api/v1/parks/?parkCode="+req.params.parkCode+"&fields=images&apiKey="+parks_api_key,
+    (error, response, body) =>    {
+        if(error || response.statusCode != 200){
+            return console.log("Oops couldn't find the park");
+        }
+        var results = JSON.parse(body);
+        res.send(results);
 
       /* Also, update the parkSearches database */
       db.ParkSearches.findAll({
@@ -90,7 +59,7 @@ module.exports = function(app) {
             }
           });
         }
-
+      
         res.send(results);
 
       });
@@ -101,38 +70,17 @@ module.exports = function(app) {
    /**
    * GET method that handles park information lookup by state
    */
-  app.get("/api/getParkByState/:code", function(req, res) {
-    let stateToSearch = req.params.code;
 
-    console.log("Got a park lookup request by state, the state code is " + stateToSearch);
-
-    /* Parameter validation */
-    if(!stateToSearch || typeof(stateToSearch) !== "string" || stateToSearch.length !== 2){
-      res.status(400).send("Oops - bad state code passed in");
-    }
-
-    /* Valid state code provided. Do a lookup using the NPS API */
-    /* Construct the query URL retrieve information on the park */
-    var queryUrl = "http://api.nps.gov/api/v1/parks/?stateCode=" + stateToSearch;
-
-    /* Append API Key to the query URL */
-    queryUrl += ("&apiKey="+parks_api_key);
-
-    /* Also ask for images of the park */
-    queryUrl += "&fields=images";
-
-    /* Don't limit the results */
-    /* queryUrl += "&limit=3"; */
-
-    console.log("Query URL is " + queryUrl);
-
-    request(queryUrl, function(error, response, body){
-
-      if(error || response.statusCode != 200){
-        res.status(500).send("NPS API lookup failed!");
-      }
-
-      var results = JSON.parse(body);
+  app.get("/api/nps/stateCode/:stateCode", function(req, res) {
+    console.log(req.originalUrl);
+    let stateToSearch =req.params.stateCode
+    request("http://api.nps.gov/api/v1/parks/?stateCode="+req.params.stateCode+"&fields=images&apiKey="+parks_api_key,
+    (error, response, body) =>    {
+        if(error || response.statusCode != 200){
+            return console.log("Oops couldn't find the park");
+        }
+        var results = JSON.parse(body);
+      
 
       /* Update the stateSearches database */
       db.StateSearches.findAll({
