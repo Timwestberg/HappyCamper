@@ -8,22 +8,26 @@ const fetch = require('node-fetch');
 var parks_api_key = process.env.PARKS_API_KEY;
 
 /**
- * @function getParkInfo
- * @description this function performs an API lookup on the NPS API (National Parks Service)
- * It retrieves park information (name, images, description) and returns this in an object.
- *
-const getParkInfo = async url => {
-  try {
-    
-    return json;
-  } catch (error) {
-    console.log(error);
+ * This helper function implements an asynchronous version of tthe
+ * array function 'forEach'. 
+ * We use this to sequentially retrieve park information for the popular
+ * parks in our database.
+ * 
+ * 
+ * @param {*} array - the array to iterate over. In our case, its the 
+ * array of popular park codes.
+ * @param {*} callback - the callback function to execute for each array element. 
+ * In our case, it's the NPS API lookup to retrieve information on each popular park.
+ */
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
   }
-};*/
+}
 
 module.exports = function(app) {
   // Load index page
-  app.get("/", function(req, res) {
+  app.get("/", async function(req, res) {
     
     /* When the page loads, display the most popular parks that aree searched.
       To do this, we first look up our 'parkSearches' table. This will give us 
@@ -41,9 +45,8 @@ module.exports = function(app) {
       /* Step 2 : for each popular park code, get its info from the NPS API */
       let parkInfoArray = [];
 
-      popularParks.forEach(async (currentPark) => {
-        //console.log("*** ITERATION ****");
-        
+      /* Use async/await to wait for the NPS API response on each park */
+      await asyncForEach(popularParks, async (currentPark) => {
         /* Construct the query URL retrieve information on the park */
         var queryUrl = "http://api.nps.gov/api/v1/parks/?parkCode=" + currentPark.parkCode;
 
@@ -64,10 +67,16 @@ module.exports = function(app) {
         parkInfo.parkDescription = json.data[0].description;
         parkInfo.parkImages = json.data[0].images;
         parkInfo.parkStates = json.data[0].states;
+
+        // UNCOMMENT THIS DURING DEBUGGING
         //console.log("\n\n Here's the park data");
         //console.log(parkInfo);
+  
         parkInfoArray.push(parkInfo);
       });
+
+      // UNCOMMENT THIS DURING DEBUGGING
+      console.log(parkInfoArray);
 
       /* Array is ready. Use it to populate handlebars */
 
