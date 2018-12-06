@@ -37,13 +37,14 @@ module.exports = function(app) {
       and build an array of objects that is fed to handlebars *
 
     /*Step 1: Look up the parkSearches table */
+    let parkInfoArray = [];
     db.ParkSearches.findAll({
       order:[ 
         ['hitCount','DESC'] 
       ]}).then(async function(popularParks){
     
       /* Step 2 : for each popular park code, get its info from the NPS API */
-      let parkInfoArray = [];
+    
 
       /* Use async/await to wait for the NPS API response on each park */
       await asyncForEach(popularParks, async (currentPark) => {
@@ -84,7 +85,8 @@ module.exports = function(app) {
  
     const pageObject = {
       style:"camperMain",
-      jsFile:"landPage"
+      jsFile:"landPage",
+      popularPark: parkInfoArray
     };
     console.log(pageObject);
     

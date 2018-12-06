@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=ABeeZee|Playfair+Display+SC');
-/* fONTS */
-/* font-family: 'ABeeZee', sans-serif;
-font-family: 'Playfair Display SC', serif; */
+@import url('https://fonts.googleapis.com/css?family=ABeeZee|Courgette|Playfair+Display+SC|Vollkorn');
+
+/* font-family: 'ABeeZee', sans-serif; */
+/* font-family: 'Playfair Display SC', serif; */
+/* font-family: 'Vollkorn', serif; */
+/* font-family: 'Courgette', cursive; */
 
 .optionsRow{
     padding-top:80px;
@@ -11,8 +13,6 @@ font-family: 'Playfair Display SC', serif; */
     padding: 0%;
     width: 100%;
     margin: 0%;
-    font-family: 'ABeeZee', sans-serif;
-    color:rgb(199, 228, 198);
     }
     
     div#results {
@@ -21,458 +21,590 @@ font-family: 'Playfair Display SC', serif; */
     display: none;
     }
     div#viewport {
-    display: flex;
-    overflow: hidden;
-    height:100vh;
-    width:107%;
-    }
+        display: flex;
+        overflow: hidden;
+        height:100vh;
+        width:102%;
+        }
     div#search_page  {
     width: 70%;
     background:url(../images/landPage1.jpg);
     background-size: cover;
     background-position:center;
     overflow:hidden;
+    transition: 0.7s;
     }
+
+
+
+
+
     div#results_page  {
     width: 15%;
-    overflow-x:hidden;
-    overflow-y:scroll;
+    overflow: auto;
+    /* background-color: #62d474;
+     */
     background:url(../images/landPage2.jpg);
     background-size: cover;
     background-position:center;
+    transition: 0.7s;
     }
     div#park_page  {
-    color:#e2e5e2;
     width: 15%;
+    /* background-color: #508632; */
     background:url(../images/landPage3.jpg);
     background-size: cover;
     background-position:center;
-    overflow-y:scroll;
     overflow-x:hidden;
+    transition: 0.7s;
     }
-    
-    
-    
-    /* Code for the content within the slider */
-    
-    .searchParameters[type="checkbox"] {
-    position: relative;
-    /* ratio:3:1 */
-    width: 70%;
-    max-width:75px;
-    height:15px;
-    -webkit-appearance:none;
-    box-shadow: 0 0 0 4px #353535,
-    0 0 0 5px #3e3e3e,
-    inset 0 0 10px rgba(0,0,0,1), 
-    0 5px 20px rgba(0,0,0,.5),
-    inset 0 0 15px rgba(0,0,0,.2);
-    background: linear-gradient(0deg,#6dd1ff,#20b7ff);
-    outline:none;
-    border-radius: 20px;
-    transition: 0.5s;
-    left: 46%;
-    top: -35px;
-    margin:3px;
-    }
-    
-    
-    #parameterRegion::before{
-    content:'By State';
-    font-size: 8px;
-    color:#63cdff;
-    }
-    
-    #parameterRegion:checked:before{
-    content:'By Park';
-    font-size: 8px;
-    color:rgb(71, 207, 100);
-    }
-    
-    #searchBy {
-    display:none;
-    transition: all 0s;
-    }
-    
-    #searchBy.active {
-    display:block;
-    transition:all 0s;
-    }
-    
-    
-    
-    
-    .searchParameters:before {
-    content:'';
-    text-align:center;
-    line-height: 15px;
-    position:absolute;
-    /* ratio: 2:1 */
-    width:40px;
-    height:15px;
-    background: linear-gradient(0deg,#000,#6b6b6b);
-    border-radius: 70px 70px 70px 70px;
-    -moz-border-radius: 70px 70px 70px 70px;
-    -webkit-border-radius: 70px 70px 70px 70px;
-    top:0;
-    left:0;
-    transform: scale(.98,.96);
-    transition: .5s;
-    -webkit-box-shadow: -2px 16px 51px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: -2px 16px 51px -6px rgba(0,0,0,0.75);
-    box-shadow: -2px 16px 51px -6px rgba(0,0,0,0.75);
-    }
-    
-    .searchParameters:checked[type="checkbox"]:before{
-    left:36px;
-    
-    }
-    
-    .searchParameters[type="checkbox"]:after {
-    content:'';
-    position:absolute;
-    top: calc(50% - 2px);
-    left:36px;
-    width:2px;
-    height:2px;
-    background: linear-gradient(0deg,#6dd1ff,#20b7ff);
-    border-radius: 50%;
-    transition: .5s
-    }
-    
-    .searchParameters:checked[type="checkbox"]:after{
-    left:72px;
-    background: linear-gradient(0deg,rgb(71, 207, 100),rgb(253, 250, 250));    
-    box-shadow:0 0 5px #13b3ff, 
-    0 0 15px #13b3ff;
-    }
-    
-    .searchParameters:checked[type="checkbox"]{
-    box-shadow: 0 0 2px #6dd1ff,
-    0 0 0 4px #353535,
-    0 0 0 5px #3e3e3e,
-    inset 0 0 10px rgba(0,0,0,1), 
-    0 5px 20px rgba(0,0,0,.5),
-    inset 0 0 15px rgba(0,0,0,.2);
-    background: linear-gradient(0deg,rgb(71, 207, 100),rgb(253, 250, 250));
-    
-    }
-    
-    ::-webkit-.searchParameters-placeholder {
-    /* Chrome/Opera/Safari */
-    color: #62d474;
-    }
-    ::-moz-placeholder {
-    /* Firefox 19+ */
-    color: #62d474;
-    }
-    :-ms-.searchParameters-placeholder {
-    /* IE 10+ */
-    color: #62d474;
-    }
-    :-moz-placeholder {
-    /* Firefox 18- */
-    color: #62d474;
-    }
-    
-    /* End of styling for checkboxes */
-    
-    .searchInput {
-    position: absolute;
-    top: -10px;
-    right: 47%;
-    box-sizing: border-box;
-    width: 0px;
-    height: 43px;
-    padding: 0 20px;
-    outline: none;
-    font-size: 18px;
-    border-radius: 50px;
-    color: #29313a;
-    border: 3px solid #62d474;
-    transition: all 0.8s ease;
-    }
-    
-    .searchInput.active {
-    width: 70%;
-    right: 75px;
-    }
-    
-    #searchButton {
-    position: absolute;
-    outline:none;
-    width: 70px;
-    height: 70px;
-    background: #62d474;
-    border-radius: 50%;
-    right: 47%;
-    top: -20px;
-    cursor: pointer;
-    text-align: center;
-    line-height: 70px;
-    font-size: 25px;
-    color: linear-gradient(0deg,rgb(71, 207, 100),rgb(253, 250, 250));
-    transition: all 0.8s ease;
-    -webkit-box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
-    }
-    
-    #searchButton.animate {
-    transform: rotate(-360deg);
-    right: 25px;
-    }
-    
-    button:focus{
-    outline:none;
-    }
-    
-    
-    .searchBarWrapper {
-    margin:20px;
-    top: 0;
-    left: 0;
-    }
-    
-    .searchRow {
-        margin-top:50px;
-    }
-    
-    /* Styling for Login Button */
-    
-    /* Login Modal & Button to activate modal */
-    
-    
-    /* Login Button */
-    #loginButton {
-    position: absolute;
-    outline:none;
-    width: 70px;
-    height: 70px;
-    background: #fff054;
-    border-radius: 50%;
-    right: 47%;
-    top: -20px;
-    cursor: pointer;
-    text-align: center;
-    line-height: 70px;
-    font-size: 25px;
-    color: linear-gradient(0deg,rgb(71, 207, 100),rgb(253, 250, 250));
-    transition: all 0.8s ease;
-    -webkit-box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
-    }
-    /* Login Button Animation */
-    #loginButton.animate {
-    transform: rotate(-360deg);
-    }
-    
-    /* Login Modal */
-    #loginModal {
-        display:none;
-        position: absolute;
-        z-index:1;
-        top: 25%;
-        left: 25%;
-        height: 50%;
-        width:60%;
-        overflow: auto;
-        background-color:white;
-        animation-name:modalopen;
-        animation-duration: 1s;
-    }
-    
-    /* Animation for login modal */
-    @keyframes modalopen {
-    from{opacity:0}
-    to{opacity:1}
-    };
-    
-    /* Content for the login modal */
-    .login-content {
-        background-color: white;
-        margin: 20% auto;
-        padding:20px;
-        width: 70%;
-        box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0.17);
-    }
-    
-    /* Close button styling for the modal */
-    .loginCloseButton {
-        color:white;
-        position: absolute;
-        right:8px;
-        top:-2px;
-        font-size: 30px;
-    }
-    
-    /* Close button effects for the modal */
-    .loginCloseButton:hover,.loginCloseButton:focus{
-        color:black;
-        text-decoration: none;
-        cursor:pointer;
-    
-    }
-    
-    
-    
-    /* =============================================== */
-    
-    /* Styles for park profile page */
-    
-    .tales {
+    div#park_page_results   {
     width: 100%;
+    overflow: none;
+    background-color: rgba(4, 165, 152, 0.589);
+    font-family: 'Vollkorn', serif;
+    color:rgb(22, 2, 1);
     }
-    .carousel-inner{
-    width:100%;
-    max-height: 350px ;
-    }
-    h2{
-        text-decoration: underline;
-    }
-    #bottom{
-        height: 50px;
-    }
-    #middle{
+    
+     /* Code for the content within the slider */
+        
+        .searchParameters[type="checkbox"] {
+        position: relative;
+        /* ratio:3:1 */
+        width: 70%;
+        max-width:75px;
         height:20px;
-    }
-    p{
-        font-family: 'bubbler one';
-        font-size: 18px;
-    }
-    
-    
-    /* This the CSS for the rating stars
-    */
-    .rating:not(:checked) > input {
+        -webkit-appearance:none;
+        box-shadow: 0 0 0 4px #353535,
+        0 0 0 5px #3e3e3e,
+        inset 0 0 10px rgba(0,0,0,1), 
+        0 5px 20px rgba(0,0,0,.5),
+        inset 0 0 15px rgba(0,0,0,.2);
+        background: linear-gradient(0deg,#6dd1ff,#20b7ff);
+        outline:none;
+        border-radius: 20px;
+        transition: 0.5s;
+        left: 25%;
+        top: -40px;
+        margin:3px;
+        }
+        
+        
+        #parameterRegion::before{
+        content:'By State';
+        font-size: 10px;
+        color:#63cdff;
+        }
+        
+        #parameterRegion:checked:before{
+        content:'By Park';
+        font-size: 10px;
+        color:rgb(71, 207, 100);
+        }
+        
+        #searchBy {
+        display:none;
+        transition: .5s;
+        }
+        
+        #searchBy.active {
+        display:block;
+        transition: .5s;
+        }
+        
+        
+        
+        
+        .searchParameters:before {
+        content:'';
+        text-align:center;
+        line-height: 15px;
         position:absolute;
-        top:0px;
-        clip:rect(0,0,0,0);
-    }
-    
-    .rating:not(:checked) > label {
-        float: right;
-        width:1em;
-        /* padding:0 .1em; */
-        overflow:hidden;
-        white-space:nowrap;
-        cursor:pointer;
-        font-size:200%;
-        /* line-height:1.2; */
-        color:#ddd;
-    }
-    
-    .rating:not(:checked) > label:before {
-        content: '★ ';
-    }
-    
-    .rating > input:checked ~ label {
-        color:#62d474;
+        /* ratio: 2:1 */
+        width:50px;
+        height:20px;
+        background: linear-gradient(0deg,#000,#6b6b6b);
+        border-radius: 70px 70px 70px 70px;
+        -moz-border-radius: 70px 70px 70px 70px;
+        -webkit-border-radius: 70px 70px 70px 70px;
+        top:0;
+        left:0;
+        transform: scale(.98,.96);
+        transition: .5s;
+        -webkit-box-shadow: -2px 16px 51px -6px rgba(0,0,0,0.75);
+        -moz-box-shadow: -2px 16px 51px -6px rgba(0,0,0,0.75);
+        box-shadow: -2px 16px 51px -6px rgba(0,0,0,0.75);
+        }
         
-    }
-    
-    .rating:not(:checked) > label:hover,
-    .rating:not(:checked) > label:hover ~ label {
+        .searchParameters:checked[type="checkbox"]:before{
+        left:26px;
+        
+        }
+        
+        .searchParameters[type="checkbox"]:after {
+        content:'';
+        position:absolute;
+        top: calc(50% - 2px);
+        left:40px;
+        background: linear-gradient(0deg,#6dd1ff,#20b7ff);
+        border-radius: 50%;
+        transition: .5s
+        }
+        
+        .searchParameters:checked[type="checkbox"]:after{
+        left:72px;
+        background: linear-gradient(0deg,rgb(71, 207, 100),rgb(253, 250, 250));    
+        box-shadow:0 0 5px #13b3ff, 
+        0 0 15px #13b3ff;
+        }
+        
+        .searchParameters:checked[type="checkbox"]{
+        box-shadow: 0 0 2px #6dd1ff,
+        0 0 0 4px #353535,
+        0 0 0 5px #3e3e3e,
+        inset 0 0 10px rgba(0,0,0,1), 
+        0 5px 20px rgba(0,0,0,.5),
+        inset 0 0 15px rgba(0,0,0,.2);
+        background: linear-gradient(0deg,rgb(71, 207, 100),rgb(253, 250, 250));
+        
+        }
+        
+        ::-webkit-.searchParameters-placeholder {
+        /* Chrome/Opera/Safari */
         color: #62d474;
-        
-    }
-    
-    .rating > input:checked + label:hover,
-    .rating > input:checked + label:hover ~ label,
-    .rating > input:checked ~ label:hover,
-    .rating > input:checked ~ label:hover ~ label,
-    .rating > label:hover ~ input:checked ~ label {
+        }
+        ::-moz-placeholder {
+        /* Firefox 19+ */
         color: #62d474;
+        }
+        :-ms-.searchParameters-placeholder {
+        /* IE 10+ */
+        color: #62d474;
+        }
+        :-moz-placeholder {
+        /* Firefox 18- */
+        color: #62d474;
+        }
         
-    }
+        /* End of styling for checkboxes */
+        
+        .searchInput {
+        position: absolute;
+        text-align:center;
+        top: -10px;
+        right: 47%;
+        box-sizing: border-box;
+        width: 0px;
+        height: 43px;
+        padding: 0 20px;
+        outline: none;
+        font-size: 18px;
+        border-radius: 50px;
+        color: #29313a;
+        border: 3px solid #62d474;
+        transition: all 0.8s ease;
+        }
+        
+        .searchInput.active {
+        width: 70%;
+        right: 75px;
+        }
+        
+        #searchButton {
+        position: absolute;
+        outline:none;
+        width: 70px;
+        height: 70px;
+        background: #62d474;
+        border-radius: 50%;
+        right: 47%;
+        top: -20px;
+        cursor: pointer;
+        text-align: center;
+        line-height: 70px;
+        font-size: 25px;
+        color: linear-gradient(0deg,rgb(71, 207, 100),rgb(253, 250, 250));
+        transition: all 0.8s ease;
+        -webkit-box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
+        }
+        
+        #searchButton.animate {
+        transform: rotate(-360deg);
+        right: 25px;
+        }
+        
+        button:focus{
+        outline:none;
+        }
+        
+        
+        .searchBarWrapper {
+        margin:20px;
+        top: 0;
+        left: 0;
+        }
+        
+        .searchRow {
+            margin-top:50px;
+        }
+        
+        /* Styling for Login Button */
+        
+        /* Login Modal & Button to activate modal */
+        
+        
+  
+        
+        /* Animation for login modal */
+        @keyframes modalopen {
+        from{opacity:0}
+        to{opacity:1}
+        };
+        
+        /* Content for the login modal */
+        .login-content {
+            background-color: white;
+            margin: 20% auto;
+            padding:20px;
+            width: 70%;
+            box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0.17);
+        }
+        
+        /* Close button styling for the modal */
+        .loginCloseButton {
+            color:white;
+            position: absolute;
+            right:8px;
+            top:-2px;
+            font-size: 30px;
+        }
+        
+        /* Close button effects for the modal */
+        .loginCloseButton:hover,.loginCloseButton:focus{
+            color:black;
+            text-decoration: none;
+            cursor:pointer;
+        
+        }
+        
+        
+        
+        /* =============================================== */
+        
+        /* Styles for park profile page */
+        
+        .tales {
+        width: 100%;
+        }
+        .carousel-inner{
+        width:100%;
+        max-height: 350px ;
+        }
+        h2{
+            text-decoration: underline;
+        }
+        #bottom{
+            height: 50px;
+        }
+        #middle{
+            height:20px;
+        }
+        p{
+            font-family: 'bubbler one';
+            font-size: 18px;
+        }
+        
+        
+        /* This the CSS for the rating stars
+        */
+        .rating:not(:checked) > input {
+            position:absolute;
+            top:0px;
+            clip:rect(0,0,0,0);
+        }
+        
+        .rating:not(:checked) > label {
+            float: right;
+            width:1em;
+            /* padding:0 .1em; */
+            overflow:hidden;
+            white-space:nowrap;
+            cursor:pointer;
+            font-size:200%;
+            /* line-height:1.2; */
+            color:#ddd;
+        }
+        
+        .rating:not(:checked) > label:before {
+            content: '★ ';
+        }
+        
+        .rating > input:checked ~ label {
+            color:#62d474;
+            
+        }
+        
+        .rating:not(:checked) > label:hover,
+        .rating:not(:checked) > label:hover ~ label {
+            color: #62d474;
+            
+        }
+        
+        .rating > input:checked + label:hover,
+        .rating > input:checked + label:hover ~ label,
+        .rating > input:checked ~ label:hover,
+        .rating > input:checked ~ label:hover ~ label,
+        .rating > label:hover ~ input:checked ~ label {
+            color: #62d474;
+            
+        }
+        
+        .rating > label:active {
+            position:relative;
+            top:2px;
+            left:2px;
+        }
     
-    .rating > label:active {
-        position:relative;
-        top:2px;
-        left:2px;
-    }
-
-
-
-  /*  Results Page styling */
-
-  .park_img{
-    margin-top:15px;
-    margin-bottom: 15px;
-    border-radius: 42px 42px 42px 42px;
-    -moz-border-radius: 42px 42px 42px 42px;
-    -webkit-border-radius: 42px 42px 42px 42px;
-    border: 0px solid #000000;
-    height: 210px; 
-    width: auto;
-    box-shadow: 0 0 2px #6dffe7,
-    0px 8px 31px 2px #353535,
-    0px 8px 31px 3px #3e3e3e,
-    inset 0 0 5px rgba(0,0,0,1), 
-    0 2.5px 10px rgba(0,0,0,.5),
-    inset 0 0 7.5px rgba(0,0,0,.2);
-    background: linear-gradient(0deg,#06ff97b0,#69df7bee)
     
-  }
+    
+      /*  Results Page styling */
 
-  .img-fluid {
-      max-width:110%;
-  }
+      .park-img-col{
+        box-shadow: 0 0 2px #6dd1ff,
+        0 0 0 4px #353535,
+        0 0 0 5px #3e3e3e,
+        inset 0 0 10px rgba(0,0,0,1), 
+        0 5px 20px rgba(0,0,0,.5),
+        inset 0 0 15px rgba(0,0,0,.2);
+      }
+    
+      .park_img{
+        margin-top:15px;
+        margin-bottom: 15px;
+        border-radius: 42px 42px 42px 42px;
+        -moz-border-radius: 42px 42px 42px 42px;
+        -webkit-border-radius: 42px 42px 42px 42px;
+        border: 0px solid #000000;
+        height: 80%; 
+        width: 100%;
+        box-shadow: 0 0 2px #6dffe7,
+        0px 8px 31px 2px #353535,
+        0px 8px 31px 3px #3e3e3e,
+        inset 0 0 5px rgba(0,0,0,1), 
+        0 2.5px 10px rgba(0,0,0,.5),
+        inset 0 0 7.5px rgba(0,0,0,.2);
+        background: linear-gradient(0deg,#06ff97b0,#69df7bee)
+        
+      }
+    
+      .img-fluid {
+          max-width:110%;
+      }
+      .park_row:hover{
+        cursor:-webkit-grab;
+      }
 
-  .park_row{
-    font-family: 'Playfair Display SC', serif;
-    position: relative;
-    left: 30px;
-    color:#01311db0;
-    background-color:#06ff97b0;
-    margin-top:15px;
-    height:100%;
-    width:95%;
-    border-radius: 22px 22px 22px 22px;
-    -moz-border-radius: 22px 22px 22px 22px;
-    -webkit-border-radius: 22px 22px 22px 22px; 
-    box-shadow: 0 0 2px #6dffe7,
-    0 0 0 4px #353535,
-    0 0 0 5px #3e3e3e,
-    inset 0 0 10px rgba(0,0,0,1), 
-    0 5px 20px rgba(0,0,0,.5),
-    inset 0 0 15px rgba(0,0,0,.2);
-    background: linear-gradient(0deg,#06ff97b0,#69df7bee) ;
-  }
 
-  div.park_row                        {border: black solid 1px; height: 100%;}
-  h1                          {font-size: 1.7rem;}
-  .park_info_col_top             {height: 70px;;}
-  .park_info_col_top_children     {height: 100%;}
- 
+      .park_row{
+        font-family: 'Playfair Display SC', serif;
+        position: relative;
+        left: 30px;
+        color:#01311db0;
+        background-color:#06ff97b0;
+        margin-top:15px;
+        height:100%;
+        width:95%;
+        border-radius: 22px 22px 22px 22px;
+        -moz-border-radius: 22px 22px 22px 22px;
+        -webkit-border-radius: 22px 22px 22px 22px; 
+        box-shadow: 0 0 2px #6dffe7,
+        0 0 0 4px #353535,
+        0 0 0 5px #3e3e3e,
+        inset 0 0 10px rgba(0,0,0,1), 
+        0 5px 20px rgba(0,0,0,.5),
+        inset 0 0 15px rgba(0,0,0,.2);
+        background: linear-gradient(0deg,#06ff97b0,#69df7bee) ;
+      }
+    
+      div.park_row                        {border: black solid 1px; height: 100%;}
+      h1                          {font-size: 1.7rem;}
+      /* .park_info_col_top             {height: 100%;} */
+      .park_info_col_top_children     {height: 100%;}
+     
+    
+
+      .park_info_col_bottom {
+        height: 100%;
+        margin:5px;
+        font-size:15px;
+      }
+
+      .parkInfoHeader {
+          text-align:center;
+          font-family: 'Courgette', cursive;
+          color: rgba(211, 54, 140, 0.877);      
+        }
+    
+      #parkInfoCard{
+          font-size: 20px;
+          background: linear-gradient(0deg,#06ff97b0,#69df7bee) ;
+          border-radius: 22px 22px 22px 22px;
+        -moz-border-radius: 22px 22px 22px 22px;
+        -webkit-border-radius: 22px 22px 22px 22px;
+        border: 0px solid #000000;
+        box-shadow: 0 0 2px #6dffe7,
+        0 0 0 4px #353535,
+        0 0 0 5px #3e3e3e,
+        inset 0 0 10px rgba(0,0,0,1), 
+        0 5px 20px rgba(0,0,0,.5),
+        inset 0 0 15px rgba(0,0,0,.2);
+        margin:2px;
+      }
+
+      #parkInfo{
+          margin:10px;
+      }
 
 
-  .park_info_col_bottom {
-    height: 100%;
-    margin:5px;
-  }
+      #reviewer-name{
+        box-shadow: 0 0 2px #6dffe7,
+        0 0 0 4px #353535,
+        0 0 0 5px #3e3e3e,
+        inset 0 0 10px rgba(0,0,0,1), 
+        0 5px 20px rgba(0,0,0,.5),
+        inset 0 0 15px rgba(0,0,0,.2);
+      }
 
-  .park_title_div{
+      #review-text {
+        box-shadow: 0 0 2px #6dffe7,
+        0 0 0 4px #353535,
+        0 0 0 5px #3e3e3e,
+        inset 0 0 10px rgba(0,0,0,1), 
+        0 5px 20px rgba(0,0,0,.5),
+        inset 0 0 15px rgba(0,0,0,.2);
+      }
 
-  }
+      .submitReview{
+        position: relative;
+        left:50%;
+        margin-top:2px;
+        bottom:10px;
+        outline:none;
+        width: 95px;
+        height: 70px;
+        background: #62d474;
+        border-radius: 50%;
+        cursor: pointer;
+        text-align: center;
+        line-height: 70px;
+        font-size: 25px;
+        color: linear-gradient(0deg,rgb(71, 207, 100),rgb(253, 250, 250));
+        transition: all 0.8s ease;
+        -webkit-box-shadow: 5px 3px 140px -19px rgba(0,0,0,0.75);
+        -moz-box-shadow: 5px 3px 140px -19px rgba(0,0,0,0.75);
+        box-shadow: 5px 3px 140px -19px rgba(0,0,0,0.75);
+      }
 
-  .park_info_col_top{
 
+      /* CSS styling for button pulse */
+
+.submitReview:hover {
+	-webkit-animation: pulsate-fwd 0.5s ease-in-out infinite both;
+	        animation: pulsate-fwd 0.5s ease-in-out infinite both;
 }
 
-  .park_location_div{
 
+ @-webkit-keyframes submitReview {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
   }
-
-  .park_name{
-
+  @keyframes submitReview {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
   }
+      .park_title_div{
+    
+      }
+    
+      .park_info_col_top{
+    
+    }
+    
+      .park_location_div{
+    
+      }
+    
+      .park_name{
+    
+      }
+    
+      .park_location{
+    
+      }
+    
+      .park_description{
+    
+      }
 
-  .park_location{
 
-  }
-
-  .park_description{
-
-  }
+            /* Login Button */
+            /* #loginButton {
+                position: absolute;
+                outline:none;
+                width: 70px;
+                height: 70px;
+                background: #fff054;
+                border-radius: 50%;
+                right: 47%;
+                top: -20px;
+                cursor: pointer;
+                text-align: center;
+                line-height: 70px;
+                font-size: 25px;
+                color: linear-gradient(0deg,rgb(71, 207, 100),rgb(253, 250, 250));
+                transition: all 0.8s ease;
+                -webkit-box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
+                -moz-box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
+                box-shadow: 0px 0px 148px 0px rgba(0,0,0,0.75);
+                } */
+                /* Login Button Animation */
+                /* #loginButton.animate {
+                transform: rotate(-360deg);
+                } */
+                
+                /* Login Modal */
+                /* #loginModal {
+                    display:none;
+                    position: absolute;
+                    z-index:1;
+                    top: 25%;
+                    left: 25%;
+                    height: 50%;
+                    width:60%;
+                    overflow: auto;
+                    background-color:white;
+                    animation-name:modalopen;
+                    animation-duration: 1s;
+                } */
