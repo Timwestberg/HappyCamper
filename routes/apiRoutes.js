@@ -10,18 +10,8 @@ var parks_api_key = process.env.PARKS_API_KEY;
 module.exports = function(app) {
 
   /**
-   * Route that handles park information lookup by park code
-   *
+   * GET method that handles park information lookup by park code
    */
-
-  app.post("/api/parkCode", function(req,res){
-
-  });
-
-  app.post("/api/stateCode", function(req,res){
-
-  });
-
   app.get("/api/getParkByCode/:code", function(req, res) {
     let parkToSearch = req.params.code;
 
@@ -29,7 +19,7 @@ module.exports = function(app) {
 
     /* Parameter validation */
     if(!parkToSearch || typeof(parkToSearch) !== "string" || parkToSearch.length !== 4){
-      res.status(404).send("Oops - bad park code passed in");
+      res.status(400).send("Oops - bad park code passed in");
     }
 
     /* Valid park code provided. Do a lookup using the NPS API */
@@ -46,10 +36,8 @@ module.exports = function(app) {
 
     request(queryUrl, function(error, response, body){
 
-      var parkInfo = {};
-
       if(error || response.statusCode != 200){
-        res.status(404).send("NPS API lookup failed!");
+        res.status(500).send("NPS API lookup failed!");
       }
 
       var results = JSON.parse(body);
@@ -57,12 +45,6 @@ module.exports = function(app) {
       console.log(results.total + " matches found!\n");
 
       // onsole.log(results);
-
-      /* Construct the park information object that we'll send back to the client */
-      parkInfo.parkName = results.data[0].fullName;
-      parkInfo.parkDescription = results.data[0].description;
-      parkInfo.parkImages = results.data[0].images;
-      parkInfo.parkStates = results.data[0].states;
 
       /* The specified national park was found. Retrieve its co-ordinates to perform 
         a weather lookup */
@@ -109,16 +91,15 @@ module.exports = function(app) {
           });
         }
 
-        res.send(parkInfo);
+        res.send(results);
 
       });
     });
 
   });
 
-  /**
-   * Route that handles park information lookup by state
-   *
+   /**
+   * GET method that handles park information lookup by state
    */
   app.get("/api/getParkByState/:code", function(req, res) {
     let stateToSearch = req.params.code;
@@ -127,7 +108,7 @@ module.exports = function(app) {
 
     /* Parameter validation */
     if(!stateToSearch || typeof(stateToSearch) !== "string" || stateToSearch.length !== 2){
-      res.status(404).send("Oops - bad state code passed in");
+      res.status(400).send("Oops - bad state code passed in");
     }
 
     /* Valid state code provided. Do a lookup using the NPS API */
@@ -140,42 +121,20 @@ module.exports = function(app) {
     /* Also ask for images of the park */
     queryUrl += "&fields=images";
 
-    /* For now, lets limit the number of results to 5 */
-    queryUrl += "&limit=3";
+    /* Don't limit the results */
+    /* queryUrl += "&limit=3"; */
 
     console.log("Query URL is " + queryUrl);
 
     request(queryUrl, function(error, response, body){
 
-      var parksList = [];
-
       if(error || response.statusCode != 200){
-        res.status(404).send("NPS API lookup failed!");
+        res.status(500).send("NPS API lookup failed!");
       }
 
       var results = JSON.parse(body);
 
-      for(let i = 0; i < results.data.length; i++){
-
-        let parkInfo = {};
-
-        console.log(results.data[i]);
-
-        /* Construct the park information object that we'll send back to the client */
-        parkInfo.parkName = results.data[i].fullName;
-        parkInfo.parkDescription = results.data[i].description;
-        parkInfo.parkImages = results.data[i].images;
-        parkInfo.parkStates = results.data[i].states;
-
-        // TBD: additional fields to show in the expanded window
-        
-        parksList.push(parkInfo);
-
-        //console.log("*** Park co-ordinates are ***");
-        //console.log("Latitude : " + latitude + " and Longitude : " + longitude);
-      }
-
-      /* Also, update the stateSearches database */
+      /* Update the stateSearches database */
       db.StateSearches.findAll({
         where: {
           stateCode:stateToSearch
@@ -186,7 +145,7 @@ module.exports = function(app) {
 
         if(0 === searchResults.length){
           // Park code has not been searched before. Add it to parkSearches
-          console.log("State doesn't exist in searches, adding it");
+          //console.log("State doesn't exist in searches, adding it");
           db.StateSearches.create({
             stateCode: stateToSearch,
           }).then(function(newlyAddedSearch){
@@ -196,7 +155,7 @@ module.exports = function(app) {
           });
         }else{
           // Park code has already been searched before. Update its hitCount.
-          console.log("State already exists in database, updating its hit-count");
+          // console.log("State already exists in database, updating its hit-count");
           
           db.StateSearches.increment('hitCount' , { 
             where: {
@@ -208,25 +167,23 @@ module.exports = function(app) {
             }
           });
         }
-        res.send(parksList);
+        /* Send back the results object */
+        res.send(results);
       });
     });
 
   });
 
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
-  // This is the POST method
+  /**
+   * POST method that adds a user review about a park 
+   * to the ParkReviews database.
+   */
   app.post("/api/review", function(req, res){
 
     // Validate parameters
     if(!req.body || !req.body.review) {
         // Throw an error
+        res.status(400).send("Got invalid review information")
     }
 
     // Add the review ton the database

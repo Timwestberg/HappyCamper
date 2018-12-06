@@ -71,7 +71,7 @@ module.exports = function(app) {
         // UNCOMMENT THIS DURING DEBUGGING
         //console.log("\n\n Here's the park data");
         //console.log(parkInfo);
-        
+  
         parkInfoArray.push(parkInfo);
       });
 
