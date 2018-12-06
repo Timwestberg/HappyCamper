@@ -85,7 +85,7 @@ module.exports = function(app) {
  
     const pageObject = {
       style:"camperMain",
-      jsFile:"landPage",
+      jsFile:["landPage","parkReviews"],
       popularPark: parkInfoArray
     };
     console.log(pageObject);

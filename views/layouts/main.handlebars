@@ -18,7 +18,9 @@
     crossorigin="anonymous"></script>
 
             {{!--Javascript for the page --}}
-  <script src="/js/{{jsFile}}.js"></script>
+  {{#each jsFile}}
+    <script src="/js/{{this}}.js"></script>
+  {{/each}}
 
 
 </body>

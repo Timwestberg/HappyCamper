@@ -135,7 +135,7 @@ module.exports = function(app) {
   app.post("/api/review", function(req, res){
 
     // Validate parameters
-    if(!req.body || !req.body.review) {
+    if(!req.body || !req.body.name || !req.body.rating || !req.body.text) {
         // Throw an error
         res.status(400).send("Got invalid review information")
     }
