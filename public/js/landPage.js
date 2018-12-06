@@ -10,6 +10,9 @@ $( document ).ready(function() {
 
 var rows = [];
 
+// Stores park code of currently displayed park in third panel
+var currentDisplayedPark;
+
 function append_park(results)  {
     if (results.data !== undefined)    {
         results = results.data[0];
@@ -95,28 +98,33 @@ function Display_Div()  {
 function callback_display(results) {
     if (display.number === 1)   {   append_park(results);   }
     else    {
-    for (i=0; i < display.number; i++)   {
-        var randomized = Math.floor(Math.random() * results.total);
-        nps = results.data[randomized];
-        rows = append_park_row(nps, display);
-    };
-    for (i=0; i < rows.length; i++) {
-        $(rows[i]).click((event)    =>  {
-            var objClasses = $(event.target)[0].classList;
-            for (i=0; i< objClasses.length; i++)  {
-                if (objClasses[i].length === 4) {
-                var parkSelected = $(event.target)[0].classList[i];
-            }};
-            for (i=0; i < results.total; i++)  {
-                if (results.data[i].parkCode === parkSelected) {
-                    parkResults = results.data[i];
-                    break;
-            }};
-            if (parkResults !== undefined || null)  {
-                third_toggle = true;
-                phase3(pages_viewed, third_toggle, null);
-                append_park(parkResults);
-}})}}};
+        for (i=0; i < display.number; i++)   {
+            var randomized = Math.floor(Math.random() * results.total);
+            nps = results.data[randomized];
+            rows = append_park_row(nps, display);
+        };
+        for (i=0; i < rows.length; i++) {
+            $(rows[i]).click((event)    =>  {
+                var objClasses = $(event.target)[0].classList;
+                for (i=0; i< objClasses.length; i++)  {
+                    if (objClasses[i].length === 4) {
+                    var parkSelected = $(event.target)[0].classList[i];
+                }};
+                for (i=0; i < results.total; i++)  {
+                    if (results.data[i].parkCode === parkSelected) {
+                        parkResults = results.data[i];
+                        break;
+                }};
+                if (parkResults !== undefined || null)  {
+                    third_toggle = true;
+                    phase3(pages_viewed, third_toggle, null);
+                    append_park(parkResults);
+                }
+                getParkDetails(parkSelected);
+            })
+        }
+    }
+};
 
 function requestNPS(new_search) {
     $.get("/api/nps/"+new_search.search_type+"/"+new_search.search_code, (error, response, body) => {
@@ -152,6 +160,10 @@ function check_page_viewed(pages_viewed, third_toggle, new_search)  {
 function pages_now_viewed(pages_viewed, new_search)    {
 for (i=0; i < pages_viewed.length; i++)    {
     pages_viewed[i].click((event) =>   {
+
+        // Clear the displayed reviews div
+        $("#display-reviews").empty();
+
         switch (event.target.id)    {
             case "search_page":
                 phase1(pages_viewed, third_toggle, new_search);
@@ -202,6 +214,10 @@ function phase3(pages_viewed, third_toggle, new_search)   {
 
 searchButton.click((event)   =>  {
     event.preventDefault();
+
+    //Clear the displayed reviews div
+    $("#display-reviews").empty();
+
     switch (changeInputState)   {
         case ("open next"):
         // No longer need I open up the toggle on load and never close
@@ -275,20 +291,22 @@ function getParkDetails(ParkCode){
     console.log(results.data[0].description);
     console.log(results.data[0].images[0].url);
 
-  //GETt the Park Name to display 
-  $("#park").text(results.data[0].fullName);
+    //GETt the Park Name to display 
+    $("#park").text(results.data[0].fullName);
 
-  //GET the park description of the park 
-  $("#parkInfo").text(results.data[0].description);
+    //GET the park description of the park 
+    $("#parkInfo").text(results.data[0].description);
 
-  var numImages = results.data[0].images.length;
+    var numImages = results.data[0].images.length;
 
-  console.log("The park has " + numImages + " images");
-    
-  //GET Images to display in the carousel 
-  for(let i = 0; i < imageIDs.length; i++){
-    $(imageIDs[i]).attr("src",results.data[0].images[i].url);
-  }
+    console.log("The park has " + numImages + " images");
+        
+    //GET Images to display in the carousel 
+    for(let i = 0; i < imageIDs.length; i++){
+        $(imageIDs[i]).attr("src",results.data[0].images[i].url);
+    }
+
+    currentDisplayedPark = ParkCode.toUpperCase();
 
   });
   

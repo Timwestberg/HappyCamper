@@ -27,7 +27,7 @@ function submitReview(){
     review.name = $("#reviewer-name").val();
     review.rating = 4; /* Fix this */
     review.text = $("#review-text").val();
-    review.parkCode = "ACAD";
+    review.parkCode = currentDisplayedPark;
 
     $.post("/api/review", review, function(result){
         console.log("Post method returned");
