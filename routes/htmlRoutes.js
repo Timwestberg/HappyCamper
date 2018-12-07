@@ -78,19 +78,28 @@ module.exports = function(app) {
 
       // UNCOMMENT THIS DURING DEBUGGING
       console.log(parkInfoArray);
-
+      const pageObject = {
+        style:"camperMain",
+        jsFile:["landPage","parkReviews"]
+        //popularParks: parkInfoArray
+      };
+      console.log('*********************************************************')
+      console.log(pageObject);
+      console.log('*********************************************************')
+      res.render("index", pageObject);
       /* Array is ready. Use it to populate handlebars */
 
     });
  
-    const pageObject = {
-      style:"camperMain",
-      jsFile:["landPage","parkReviews"],
-      popularPark: parkInfoArray
-    };
-    console.log(pageObject);
-    
-    res.render("index", pageObject);
+    // const pageObject = {
+    //   style:"camperMain",
+    //   jsFile:["landPage","parkReviews"],
+    //   popularPark: parkInfoArray
+    // };
+    // console.log('*********************************************************')
+    // console.log(pageObject);
+    // console.log('*********************************************************')
+    // res.render("index", pageObject);
     // res.sendFile(path.join(__dirname, "../public/landPage.html"));
   });
 
