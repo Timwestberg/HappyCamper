@@ -25,7 +25,8 @@ function submitReview(){
     var review = {};
 
     review.name = $("#reviewer-name").val();
-    review.rating = numStars; 
+    //review.rating = numStars; 
+    review.rating = 4; 
     review.text = $("#review-text").val();
     review.parkCode = currentDisplayedPark;
 
