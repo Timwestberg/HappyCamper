@@ -80,8 +80,8 @@ module.exports = function(app) {
       console.log(parkInfoArray);
       const pageObject = {
         style:"camperMain",
-        jsFile:["landPage","parkReviews"]
-        //popularParks: parkInfoArray
+        jsFile:["landPage","parkReviews"],
+        popularParks: parkInfoArray
       };
       console.log('*********************************************************')
       console.log(pageObject);

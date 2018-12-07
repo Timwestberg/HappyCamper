@@ -47,17 +47,29 @@
 </div> --}}
 
 
-
-        {{#each popularParks}}
-        
-
+<!-- 
+    The popularly searched parks are stored in 'popularParks' .
+    This is an array of objects. Iterate through each object and
+    render the park information
+    1. Park Image
+    2. Park Name
+    3. Park Description
+-->
+{{#each popularParks}}
 <div class="row park_row">
 
     <div class="col-sm-12 col-md-3 col-lg-3 col-12 park_img_col ">
 
-
-        <img class="img-fluid park_img" ">
-
+        <!-- 
+            This is a bit convoluted. Since parkImages is an array of URLs itself, we have to 
+            again loop through the imagaes using #each. 
+            We choose the first image.
+        -->
+        {{#each this.parkImages}}
+            {{#if @first}}
+                <img class="img-fluid park_img" src="{{this.url}}">
+            {{/if}}
+        {{/each}}
 
         <div class="col-sm-12 col-md-9 col-lg-9 col-12 park_img_col">
 
