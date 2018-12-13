@@ -62,6 +62,7 @@ function append_park_row(nps, display)  {
     return rows;
 };
 
+var popRow = $("div.park_row-pop");
 var searchInput = $("input.searchInput");
 var searchButton = $("button#searchButton");
 var searchBy = $("#searchBy");
@@ -182,6 +183,8 @@ function phase1(pages_viewed, third_toggle, new_search)   {
     search_page_contents.css("display", "block");
     search_page.css("width", "70%");
     results_page.css("width", "15%");
+    popRow.css("display", "block");
+    search_page.css("overflow-y", "scroll");
     park_page.css("width", "15%");
     search_results.css("display", "none");
     park_page.css("overflow-y", "hidden");
@@ -191,7 +194,9 @@ function phase1(pages_viewed, third_toggle, new_search)   {
 
 function phase2(pages_viewed, third_toggle, new_search)   {
     search_page_contents.css("display", "none");
+    search_page.css("overflow-y", "hidden");
     search_page.css("width", "15%");
+    popRow.css("display","none");
     results_page.css("width", "70%");
     search_results.css("display", "block");
     park_page.css("width", "15%");
@@ -204,6 +209,8 @@ function phase3(pages_viewed, third_toggle, new_search)   {
     search_page_contents.css("display", "none");
     search_results.css("display", "none");
     search_page.css("width", "15%");
+    popRow.css("display","none");
+    search_page.css("overflow-y", "hidden");
     results_page.css("width", "15%");
     park_page.css("width", "70%");
     park_page.css("overflow-y", "scroll");
