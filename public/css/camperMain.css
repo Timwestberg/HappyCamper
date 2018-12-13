@@ -10,9 +10,9 @@
     }
     
     body    {
-    padding: 0%;
+    padding: 0;
     width: 100%;
-    margin: 0%;
+    margin: 0;
     }
     
     div#results {
@@ -22,16 +22,17 @@
     }
     div#viewport {
         display: flex;
-        overflow: hidden;
         height:100vh;
-        width:102%;
+        width:100%;
         }
+
     div#search_page  {
     width: 70%;
     background:url(../images/landPage1.jpg);
     background-size: cover;
     background-position:center;
-    overflow:hidden;
+    overflow-y:scroll;
+    overflow-x:hidden;
     transition: 0.7s;
     }
 
@@ -205,8 +206,8 @@
         .searchInput {
         position: absolute;
         text-align:center;
-        top: -10px;
-        right: 47%;
+        top: -85px;
+        right: 48%;
         box-sizing: border-box;
         width: 0px;
         height: 43px;
@@ -232,7 +233,7 @@
         background: #62d474;
         border-radius: 50%;
         right: 47%;
-        top: -20px;
+        top: -100px;
         cursor: pointer;
         text-align: center;
         line-height: 70px;
@@ -428,6 +429,26 @@
         color:#01311db0;
         background-color:#06ff97b0;
         margin-top:15px;
+        height:100%;
+        width:95%;
+        border-radius: 22px 22px 22px 22px;
+        -moz-border-radius: 22px 22px 22px 22px;
+        -webkit-border-radius: 22px 22px 22px 22px; 
+        box-shadow: 0 0 2px #6dffe7,
+        0 0 0 4px #353535,
+        0 0 0 5px #3e3e3e,
+        inset 0 0 10px rgba(0,0,0,1), 
+        0 5px 20px rgba(0,0,0,.5),
+        inset 0 0 15px rgba(0,0,0,.2);
+        background: linear-gradient(0deg,#06ff97b0,#69df7bee) ;
+      }
+
+      .park_row-pop {
+        font-family: 'Playfair Display SC', serif;
+        position: relative;
+        color:#01311db0;
+        background-color:#06ff97b0;
+        margin:15px;
         height:100%;
         width:95%;
         border-radius: 22px 22px 22px 22px;
