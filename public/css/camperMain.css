@@ -16,8 +16,8 @@
     }
     
     div#results {
-    overflow-x: none;
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
     display: none;
     }
     div#viewport {
@@ -31,7 +31,7 @@
     background:url(../images/landPage1.jpg);
     background-size: cover;
     background-position:center;
-    overflow-y:scroll;
+    overflow-y:auto;
     overflow-x:hidden;
     transition: 0.7s;
     }
@@ -42,9 +42,10 @@
 
     div#results_page  {
     width: 15%;
-    overflow: auto;
     /* background-color: #62d474;
      */
+     overflow-y:auto;
+     overflow-x:hidden;
     background:url(../images/landPage2.jpg);
     background-size: cover;
     background-position:center;
